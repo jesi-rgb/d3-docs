@@ -7,6 +7,8 @@ export async function load({ params }) {
 	console.log(fullUrl);
 	if (params.slug) {
 		const fetchDocs = await (await fetch(fullUrl)).text();
+
+		//TODO: now we should somehow split the docs here and create links and shit
 		return {
 			title: params.slug,
 			content: fetchDocs
