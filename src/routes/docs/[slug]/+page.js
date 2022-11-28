@@ -7,8 +7,18 @@ export async function load({ params }) {
 	console.log(fullUrl);
 	if (params.slug) {
 		const fetchDocs = await (await fetch(fullUrl)).text();
+		console.log(fetchDocs);
 
 		//TODO: now we should somehow split the docs here and create links and shit
+
+		const regex = /<a name="\w*" href="#\w*">#<\/a>/g;
+		// const regexObj = RegExp(/<a name="\w*" href="#\w*">#<\/a>/, 'g');
+
+		// let matches = fetchDocs.match(regex);
+		console.log(fetchDocs.matchAll(regex));
+		let matches = Array.from(fetchDocs.matchAll(regex));
+
+		console.log(matches);
 		return {
 			title: params.slug,
 			content: fetchDocs
